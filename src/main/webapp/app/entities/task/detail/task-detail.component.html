@@ -1,0 +1,49 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="task">
+      <h2 data-cy="taskDetailsHeading"><span jhiTranslate="autoGanttApp.task.detail.title">Task</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ task.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="autoGanttApp.task.summary">Summary</span></dt>
+        <dd>
+          <span>{{ task.summary }}</span>
+        </dd>
+        <dt><span jhiTranslate="autoGanttApp.task.priority">Priority</span></dt>
+        <dd>
+          <span>{{ task.priority }}</span>
+        </dd>
+        <dt><span jhiTranslate="autoGanttApp.task.project">Project</span></dt>
+        <dd>
+          <div *ngIf="task.project">
+            <a [routerLink]="['/project', task.project.id, 'view']">{{ task.project.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="autoGanttApp.task.require">Require</span></dt>
+        <dd>
+          <span *ngFor="let require of task.requires; let last = last">
+            <a [routerLink]="['/task', require.id, 'view']">{{ require.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/task', task.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
