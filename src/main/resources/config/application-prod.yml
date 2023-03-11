@@ -17,7 +17,7 @@ logging:
   level:
     ROOT: INFO
     tech.jhipster: INFO
-    fr.mguyaux.autogantt: INFO
+    com.mycompany.myapp: INFO
 
 management:
   metrics:

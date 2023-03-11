@@ -1,0 +1,48 @@
+{
+  "applications": ["autoGantt"],
+  "changelogDate": "20230311134925",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "task",
+  "fields": [
+    {
+      "fieldName": "summary",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "500",
+      "fieldValidateRulesMinlength": "1"
+    },
+    {
+      "fieldName": "priority",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Task",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "project",
+      "otherEntityRelationshipName": "task",
+      "relationshipName": "project",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "task",
+      "otherEntityRelationshipName": "isRequiredBy",
+      "ownerSide": true,
+      "relationshipName": "require",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "task",
+      "otherEntityRelationshipName": "require",
+      "ownerSide": false,
+      "relationshipName": "isRequiredBy",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

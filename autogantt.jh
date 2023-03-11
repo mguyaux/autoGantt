@@ -1,0 +1,37 @@
+
+application {
+  config {
+    baseName autoGantt
+    applicationType monolith
+    authenticationType jwt
+    buildTool maven
+    cacheProvider ehcache
+    clientFramework angularX
+    databaseType sql
+    devDatabaseType h2Disk
+    prodDatabaseType postgresql
+    nativeLanguage en
+    blueprints [kotlin]
+  }
+  entities *
+}
+
+entity Project {
+	name String required minlength(1) maxlength(100)
+    fteCount Integer required min(1) 
+    startDate LocalDate required
+}
+
+entity Task {
+	summary String required minlength(1) maxlength(500)
+    priority Integer
+}
+
+
+relationship ManyToOne {
+	Task to Project
+}
+
+relationship ManyToMany {
+	Task{require} to Task{isRequiredBy}
+}
